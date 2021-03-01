@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "UnauthorizeOperation";
+   // Layout = "~/Shared/_Layout";
+}
+
+<section class="content-header">
+
+    <h1>no tiene permisos</h1>
+</section>
+
+<section class="content">
+    <div class="error-page">
+
+        <h2 class="headline text-red"> Error</h2>
+
+        <div class="error-content">
+
+            <h3><i class=" fa fa-warning text-red">Sin Autorizacion</i></h3>
+
+            @if (ViewBag.patente != "")
+            {
+
+
+                <p>Patente: @ViewBag.patente</p>
+            }
+            @if (ViewBag.familia != "")
+            {
+
+
+                <p>Familia: @ViewBag.modulo</p>
+            }
+            @if (ViewBag.msgError != "")
+            {
+
+
+                <p>Error: @ViewBag.msgError</p>
+            }
+        </div>
+
+
+
+    </div>
+
+
+
+</section>
+
+

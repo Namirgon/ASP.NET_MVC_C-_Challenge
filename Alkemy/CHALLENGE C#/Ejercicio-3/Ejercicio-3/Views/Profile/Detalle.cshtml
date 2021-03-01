@@ -1,0 +1,56 @@
+﻿@model Ejercicio_3.Models.ViewModel.CourseViewModelList
+
+@{
+    /**/
+
+    ViewBag.Title = "Detalle de la Materia";
+    // List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<br />
+<br />
+
+@using (Html.BeginForm("Detalle", "Profile", FormMethod.Post))
+
+{
+
+    <div class="container" >
+
+
+        <div >
+
+
+            <h4>Codigo Materia</h4>
+
+            @*@Html.LabelFor(m => m.Id_Course)*@
+            @Html.TextBoxFor(m => m.Id_Course, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Id_Course, null, new { @class = "danger" })
+            <br />
+
+
+            <h4>Detalle</h4>
+            @*@Html.LabelFor(m => m.Details)*@
+            @Html.TextAreaFor(m => m.Details,  (new { style = "width: 700px; height:150px;" }))
+            @Html.ValidationMessageFor(m => m.Details, null, new { @class = "danger" })
+            <br />
+
+
+            <br />
+            <br />
+
+            <div style="text-align:right">
+
+                <a class="btn btn-lg btn-primary info " href="~/Profile/Index"> Volver</a>
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+}

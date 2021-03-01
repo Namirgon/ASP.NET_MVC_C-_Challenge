@@ -1,0 +1,53 @@
+﻿
+@model Ejercicio_3.Models.ViewModel.TeacherViewModelAlta
+
+
+@{
+    ViewBag.Title = "Alta Profesor";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Nuevo", "Teacher", FormMethod.Post))
+
+{
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, null, new { @class = "danger" })
+            <br />
+
+            @Html.LabelFor(m => m.Surname)
+            @Html.TextBoxFor(m => m.Surname, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Surname, null, new { @class = "danger" })
+            <br />
+
+            @Html.LabelFor(m => m.National_Identity_Document)
+            @Html.TextBoxFor(m => m.National_Identity_Document, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.National_Identity_Document, null, new { @class = "danger" })
+            <br />
+
+            @Html.LabelFor(m => m.Status)
+            @Html.TextBoxFor(m => m.Status, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Status, null, new { @class = "danger" })
+            <br />
+            <br />
+
+
+            <div style="text-align:right">
+
+                <input value="Guardar" type="submit" class="btn btn-primary" />
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+}

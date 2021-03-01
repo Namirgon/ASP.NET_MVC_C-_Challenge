@@ -1,0 +1,68 @@
+﻿
+@model Ejercicio_3.Models.ViewModel.CourseViewModelList
+
+
+@{
+    ViewBag.Title = "Crear Materia";
+
+    List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Nuevo", "Course", FormMethod.Post))
+
+{
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            @Html.LabelFor(m => m.Name_Course)
+            @Html.TextBoxFor(m => m.Name_Course, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name_Course, null, new { @class = "danger" })
+            <br />
+
+            @Html.LabelFor(m => m.Time_Course)
+            @Html.TextBoxFor(m => m.Time_Course, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Time_Course, null, new { @class = "danger" })
+            <br />
+
+            @Html.LabelFor(m => m.Day)
+            @Html.TextBoxFor(m => m.Day, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Day, null, new { @class = "danger" })
+            <br />
+
+            @Html.LabelFor(m => m.Id_Teacher)
+
+            @Html.DropDownListFor(model => model.Id_Teacher, items as List<SelectListItem>, new { name = "Id_Teacher", id = "Id_Teacher", @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Id_Teacher)
+
+            <br />
+            @Html.LabelFor(m => m.Maximun_Number_Of_Students)
+            @Html.TextBoxFor(m => m.Maximun_Number_Of_Students, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Maximun_Number_Of_Students, null, new { @class = "danger" })
+            <br />
+            @Html.LabelFor(m => m.Details)<br />
+            @Html.TextAreaFor(m => m.Details, (new { style = "width: 700px; height:150px;" }))
+            @Html.ValidationMessageFor(m => m.Details, null, new { @class = "danger" })
+            <br />
+
+            <br />
+            <br />
+
+
+            <div style="text-align:right">
+
+                <input value="Guardar" type="submit" class="btn btn-primary" />
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+}

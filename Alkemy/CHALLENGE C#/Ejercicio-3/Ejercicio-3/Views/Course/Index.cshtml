@@ -1,0 +1,56 @@
+﻿@model List<Ejercicio_3.Models.ViewModel.CourseViewModelList>
+
+@{
+    ViewBag.Title = "Listado de Materias";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row" style="padding:5px; text-align:right">
+    <a href="~/Course/Nuevo" class="btn btn-primary">Nuevo</a>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th> Id-Materia</th>
+                <th> Nombre </th>
+                <th> Dia </th>
+                <th> Horario</th>
+                <th> Id-Profesor</th>
+                <th> Cupo Maximo</th>
+                <th>Detalle</th>
+
+                <th></th>
+
+            </tr>
+            @foreach (var oElemento in Model) // razor
+            {
+            <tr>
+                <td> @oElemento.Id_Course </td>
+                <td> @oElemento.Name_Course </td>
+                <td> @oElemento.Day </td>
+                <td> @oElemento.Time_Course </td>
+                <td> @oElemento.Id_Teacher </td>
+                <td> @oElemento.Maximun_Number_Of_Students</td>
+                <td>@oElemento.Details</td>
+
+                <td>
+
+                    <a class="btn btn-default" href="~/Course/Editar/@oElemento.Id_Course"> Editar</a>
+
+                </td>
+
+
+            </tr>
+
+            }
+
+
+        </table>
+
+
+    </div>
+    </div>

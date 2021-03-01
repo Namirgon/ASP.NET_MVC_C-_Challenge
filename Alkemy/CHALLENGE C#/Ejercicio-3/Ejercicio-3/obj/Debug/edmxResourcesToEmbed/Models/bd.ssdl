@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CollegeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Course">
+    <Key>
+      <PropertyRef Name="Id_Course" />
+    </Key>
+    <Property Name="Id_Course" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name_Course" Type="nvarchar" MaxLength="50" />
+    <Property Name="Time_Course" Type="time" Precision="7" />
+    <Property Name="Day" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id_Teacher" Type="int" />
+    <Property Name="Maximun_Number_Of_Students" Type="int" />
+    <Property Name="Detail" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Course_Student">
+    <Key>
+      <PropertyRef Name="Id_Inscription" />
+    </Key>
+    <Property Name="Id_Inscription" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Course" Type="int" Nullable="false" />
+    <Property Name="Id_Student" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Family">
+    <Key>
+      <PropertyRef Name="Id_Family" />
+    </Key>
+    <Property Name="Id_Family" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Module">
+    <Key>
+      <PropertyRef Name="Id_module" />
+    </Key>
+    <Property Name="Id_module" Type="int" Nullable="false" />
+    <Property Name="Name_Module" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Patent">
+    <Key>
+      <PropertyRef Name="Id_Patent" />
+    </Key>
+    <Property Name="Id_Patent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Patent_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Id_Module" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Patent_Family">
+    <Key>
+      <PropertyRef Name="Id_Role" />
+    </Key>
+    <Property Name="Id_Role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_Family" Type="int" />
+    <Property Name="Id_Patent" Type="int" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Id_Student" />
+    </Key>
+    <Property Name="Id_Student" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+    <Property Name="Docket" Type="int" />
+    <Property Name="National_Identity_Document" Type="int" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="IdFamilia" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Teacher">
+    <Key>
+      <PropertyRef Name="Id_Teacher" />
+    </Key>
+    <Property Name="Id_Teacher" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="National_Identity_Document" Type="int" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Course_Student_Course">
+    <End Role="Course" Type="Self.Course" Multiplicity="1" />
+    <End Role="Course_Student" Type="Self.Course_Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Course">
+        <PropertyRef Name="Id_Course" />
+      </Principal>
+      <Dependent Role="Course_Student">
+        <PropertyRef Name="Id_Course" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Student_Student">
+    <End Role="Student" Type="Self.Student" Multiplicity="1" />
+    <End Role="Course_Student" Type="Self.Course_Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Student">
+        <PropertyRef Name="Id_Student" />
+      </Principal>
+      <Dependent Role="Course_Student">
+        <PropertyRef Name="Id_Student" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Course_Teacher">
+    <End Role="Teacher" Type="Self.Teacher" Multiplicity="0..1" />
+    <End Role="Course" Type="Self.Course" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teacher">
+        <PropertyRef Name="Id_Teacher" />
+      </Principal>
+      <Dependent Role="Course">
+        <PropertyRef Name="Id_Teacher" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patent_Family_Family">
+    <End Role="Family" Type="Self.Family" Multiplicity="0..1" />
+    <End Role="Patent_Family" Type="Self.Patent_Family" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Family">
+        <PropertyRef Name="Id_Family" />
+      </Principal>
+      <Dependent Role="Patent_Family">
+        <PropertyRef Name="Id_Family" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patent_Family_Patent">
+    <End Role="Patent" Type="Self.Patent" Multiplicity="0..1" />
+    <End Role="Patent_Family" Type="Self.Patent_Family" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Patent">
+        <PropertyRef Name="Id_Patent" />
+      </Principal>
+      <Dependent Role="Patent_Family">
+        <PropertyRef Name="Id_Patent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Patent_Module">
+    <End Role="Module" Type="Self.Module" Multiplicity="1" />
+    <End Role="Patent" Type="Self.Patent" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Module">
+        <PropertyRef Name="Id_module" />
+      </Principal>
+      <Dependent Role="Patent">
+        <PropertyRef Name="Id_Module" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Student_Family">
+    <End Role="Family" Type="Self.Family" Multiplicity="0..1" />
+    <End Role="Student" Type="Self.Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Family">
+        <PropertyRef Name="Id_Family" />
+      </Principal>
+      <Dependent Role="Student">
+        <PropertyRef Name="IdFamilia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CollegeModelStoreContainer">
+    <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Course_Student" EntityType="Self.Course_Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Family" EntityType="Self.Family" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Module" EntityType="Self.Module" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patent" EntityType="Self.Patent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Patent_Family" EntityType="Self.Patent_Family" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Course_Student_Course" Association="Self.FK_Course_Student_Course">
+      <End Role="Course" EntitySet="Course" />
+      <End Role="Course_Student" EntitySet="Course_Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Student_Student" Association="Self.FK_Course_Student_Student">
+      <End Role="Student" EntitySet="Student" />
+      <End Role="Course_Student" EntitySet="Course_Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Course_Teacher" Association="Self.FK_Course_Teacher">
+      <End Role="Teacher" EntitySet="Teacher" />
+      <End Role="Course" EntitySet="Course" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patent_Family_Family" Association="Self.FK_Patent_Family_Family">
+      <End Role="Family" EntitySet="Family" />
+      <End Role="Patent_Family" EntitySet="Patent_Family" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patent_Family_Patent" Association="Self.FK_Patent_Family_Patent">
+      <End Role="Patent" EntitySet="Patent" />
+      <End Role="Patent_Family" EntitySet="Patent_Family" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Patent_Module" Association="Self.FK_Patent_Module">
+      <End Role="Module" EntitySet="Module" />
+      <End Role="Patent" EntitySet="Patent" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Student_Family" Association="Self.FK_Student_Family">
+      <End Role="Family" EntitySet="Family" />
+      <End Role="Student" EntitySet="Student" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

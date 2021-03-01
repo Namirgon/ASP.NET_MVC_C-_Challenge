@@ -1,0 +1,61 @@
+﻿@model Ejercicio_3.Models.ViewModel.StudentViewModel
+
+
+@{
+    ViewBag.Title = "Registrar Estudiante";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Nuevo", "Student", FormMethod.Post))
+
+{
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Name, null, new { @class = "danger" })
+            <br />
+
+            @Html.LabelFor(m => m.Surname)
+            @Html.TextBoxFor(m => m.Surname, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Surname, null, new { @class = "danger" })
+            <br />
+
+            @Html.LabelFor(m => m.National_Identity_Document)
+            @Html.TextBoxFor(m => m.National_Identity_Document, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.National_Identity_Document, null, new { @class = "danger" })
+            <br />
+            @Html.LabelFor(m => m.Docket)
+            @Html.TextBoxFor(m => m.Docket, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Docket, null, new { @class = "danger" })
+            <br />
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Email, null, new { @class = "danger" })
+            <br />
+            @Html.LabelFor(m => m.Password)  @*me falta que salga asteriscos en vez de que se vea la password*@
+            @Html.TextBoxFor(m => m.Password, "", new { @class = "form-control"  })
+            @Html.ValidationMessageFor(m => m.Password , null, new { @class = "danger" })
+            <br />
+
+            <br />
+            <br />
+
+
+            <div style="text-align:right">
+
+                <input value="Guardar" type="submit" class="btn btn-primary" />
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+}

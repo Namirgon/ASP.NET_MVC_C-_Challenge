@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Iniciar Sesión";
+}
+
+<br />
+<br />
+<h2>@ViewBag.Title</h2>
+
+
+<div class="container">
+
+
+    @{
+        if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+
+            <div class="alert alert-warning">
+                <h3>@ViewBag.Message</h3>
+
+            </div>
+
+        }
+    }
+
+    <form class="form-group" method="post" action=@Url.Content("~/Acceso/Login") style="margin-left: 50px; width:500px">
+        <br />
+        <br />
+        <br />
+        <div class="form-group">
+            <label>Ingrese Legajo </label> <br />
+            <input type="text" name="Legajo" style="width:400px" placeholder="Ingrese Legajo" />
+        </div>
+
+        <div class="form-group">
+            <label>Ingrese DNI</label> <br />
+            <input type="text" name="DNI" style="width:400px" placeholder="Ingrese DNI" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Iniciar Sesion" class="btn btn-success"/>
+        </div>
+
+
+
+    </form>
+
+</div>
+

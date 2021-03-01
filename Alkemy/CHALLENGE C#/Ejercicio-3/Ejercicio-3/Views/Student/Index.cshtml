@@ -1,0 +1,54 @@
+﻿@model List<Ejercicio_3.Models.ViewModel.StudentViewModel>
+
+@{
+    ViewBag.Title = "Listado de Estudiantes";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row" style="padding:5px; text-align:right">
+    <a href="~/Teacher/Nuevo" class="btn btn-primary">Nuevo</a>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>Id-Estudiante</th>
+                <th> Nombre </th>
+                <th>Apellido </th>
+                <th> DNI</th>
+                <th>Legajo</th>
+                <th>Correo Electronico</th>
+                <th>Contraseña</th>
+                <th></th>
+
+            </tr>
+            @foreach (var oElemento in Model) // razor
+            {
+            <tr>
+                <td> @oElemento.Id_Student </td>
+                <td> @oElemento.Name </td>
+                <td> @oElemento.Surname </td>
+                <td> @oElemento.National_Identity_Document</td>
+                <td> @oElemento.Docket</td>
+                <td> @oElemento.Email</td>
+                <td> @oElemento.Password</td>
+                <td>
+
+                    <a class="btn btn-default" href="~/Student/Editar/@oElemento.Id_Student"> Editar</a>
+                    <a class="btn btn-danger" href="~/Student/Eliminar/@oElemento.Id_Student">Eliminar</a>
+                </td>
+
+
+            </tr>
+
+            }
+
+
+        </table>
+
+
+    </div>
+</div>
