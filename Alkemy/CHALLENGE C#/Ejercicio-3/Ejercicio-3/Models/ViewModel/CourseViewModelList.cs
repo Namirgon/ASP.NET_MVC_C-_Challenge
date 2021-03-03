@@ -39,5 +39,7 @@ namespace Ejercicio_3.Models.ViewModel
         public int Maximun_Number_Of_Students { get; set; }
         [NotMapped]
         public List<Teacher> TeacherCollection { get; set; }
+
+        public string NombreProfesor { get; set; }
     }
 }

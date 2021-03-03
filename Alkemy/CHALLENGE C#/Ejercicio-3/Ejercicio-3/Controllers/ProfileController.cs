@@ -20,26 +20,34 @@ namespace Ejercicio_3.Controllers
         {
 
             List<CourseViewModelList> Cursos;
-
+            
+            
             using (CollegeEntities bd = new CollegeEntities())
             {
         
 
                 Cursos = (from t in bd.Course
+                          from p in bd.Teacher
+                          where t.Id_Teacher== p.Id_Teacher
                           select new CourseViewModelList
                           {
                               Id_Course = t.Id_Course,
                               Name_Course = t.Name_Course,
                               Time_Course = t.Time_Course.Value,
-                              Id_Teacher= t.Id_Teacher.Value,
-
+                            //  Id_Teacher= p.Id_Teacher,
+                              NombreProfesor = p.Name + "  " + p.Surname,
+                             
+                             
 
                          }).ToList();
-
+               
+                         
             }
             return View(Cursos);
 
         }
+       
+
         [AuthorizeUser(IdPatente: 5)]
         public ActionResult Detalle(int Id)
         {
@@ -49,7 +57,7 @@ namespace Ejercicio_3.Controllers
             {
                 var oDetalle = bd.Course.Find(Id);
 
-                model.Id_Course = oDetalle.Id_Course;
+                model.Name_Course  = oDetalle.Name_Course ;
                 model.Details = oDetalle.Detail;
                
 
